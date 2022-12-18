@@ -1,3 +1,7 @@
+import requests
+from bs4 import BeautifulSoup as bs
+
+
 def get_amount(string):
     ok = True
     for char in string:
@@ -7,7 +11,17 @@ def get_amount(string):
     if ok:
         return float(string)
     else:
-        return None50
+        return None
+
+    def getSoup():
+        try:
+            request = requests.get("https://www.banki.ru/products/currency/cb/")
+            if request.status_code == 200:  # OK
+                return bs(request.text, "html.parser")
+            else:
+                return None
+        except Exception:
+            return None
 def main():
     currencies = ["USD", "EUR", "AUD", "CAD", "BYN", "KZT", "UAH", "GBP", "CZK", "CHF", "JPY"]
     info = "Supported currencies:"

@@ -13,15 +13,27 @@ def get_amount(string):
     else:
         return None
 
-    def getSoup():
-        try:
-            request = requests.get("https://www.banki.ru/products/currency/cb/")
-            if request.status_code == 200:  # OK
-                return bs(request.text, "html.parser")
-            else:
-                return None
-        except Exception:
+
+def getSoup():
+    try:
+        request = requests.get("https://www.banki.ru/products/currency/cb/")
+        if request.status_code == 200:  # OK
+            return bs(request.text, "html.parser")
+        else:
             return None
+    except Exception:
+        return None
+
+
+def getPrice(currency):
+    soup = getSoup()
+    if soup == None: return None
+    tags = soup.find("tr", {"data-currency-code": currency}).find_all("td")
+    amount = int(tags[1].text)
+    currency_exchange_rate = float(tags[3].text)
+    return currency_exchange_rate / amount
+
+
 def main():
     currencies = ["USD", "EUR", "AUD", "CAD", "BYN", "KZT", "UAH", "GBP", "CZK", "CHF", "JPY"]
     info = "Supported currencies:"
@@ -38,6 +50,13 @@ def main():
     if currency not in currencies:
         print("Error: Unknown currency.")
         return
+
+    price = getPrice(currency)
+    if price == None:
+        print("Connection failed")
+    else:
+        print("Result: " + str(amount / price) + " " + currency)
+
 
 if __name__ == '__main__':
     main()

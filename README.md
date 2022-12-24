@@ -1,10 +1,11 @@
 Конвертирование рублей
 
 Описание
+
 Сервис по запросу пользователя, считывает актуальный курс валют на сайте и переводит сумму в рублях в иную валюту.
 
-Запуск
-Docker
+Запуск Docker
+
 docker pull lenokvse0k/money
 docker container run -it lenokvse0k/money
 

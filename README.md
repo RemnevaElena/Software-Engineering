@@ -9,6 +9,10 @@
 docker pull lenokvse0k/money
 docker container run -it lenokvse0k/money
 
+Запуск тестов
+- main [![Converter CI](https://github.com/RemnevaElena/Software-Engineering/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/RemnevaElena/Software-Engineering/blob/develop/.github/workflows/main.yml)
+
+- develop [![Converter CI](https://github.com/RemnevaElena/Software-Engineering/actions/workflows/main.yml/badge.svg?branch=develop)](https://github.com/RemnevaElena/Software-Engineering/blob/develop/.github/workflows/main.yml)
 
 Пример использования
 1. После запуска программы в консоль выводится сообщение:
